@@ -1,0 +1,46 @@
+.main-menu {
+  width: inherit;
+  height: 75px;
+  background-color: white;
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform:  translate(-50%);
+  border-radius: 5px;
+  margin: unset;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+  padding: 10px;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: row;
+  vertical-align: middle;
+  justify-content: space-evenly;
+}
+
+.main-menu > button, input[type="submit"], input[type="reset"] {
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+.main-menu > .button {
+  max-width: 30px;
+  position: relative;
+  transition: transform 0.1s ease;
+
+  &:active {
+    transform: translateY(3px); /* Moves the button down */
+  }
+
+  & > .icon {
+    width: 80%;
+    height: auto;
+  }
+}

@@ -1,0 +1,67 @@
+.phone-frame {
+  position: relative;
+
+  width: 470px;
+  height: 800px;
+
+  overflow: hidden;
+}
+
+.camera-island {
+  position: absolute;
+  background-color: black;
+  width: 112px;
+  height: 34px;
+  border-radius: 25px;
+  left: 50%;
+  top: 32px;
+  z-index: 1000;
+  transform: translateX(-50%);
+  opacity: 1;
+}
+
+.content-wrapper {
+  position: relative;
+  width: 350px;
+  height: 758px;
+  margin-top: 22px;
+  margin-bottom: 22px;
+  margin-left: 60px;
+  margin-right: 60px;
+  overflow: hidden;
+  border-radius: 51px;
+  background-color: white;
+  // background-image: url("src/assets/christian-mackie-cc0Gg3BegjE-unsplash.jpg");
+  background-size: auto 100%;
+  box-sizing: border-box;
+  display: flex;
+  z-index: 1;
+}
+
+.background {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-image: url("src/assets/christian-mackie-cc0Gg3BegjE-unsplash.jpg");
+  background-size: cover;
+  background-position: center;
+  filter: blur(1px);
+  z-index: -1;
+}
+
+.content {
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.device {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 1500px;
+  height: auto;
+}
