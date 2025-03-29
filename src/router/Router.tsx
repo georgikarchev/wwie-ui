@@ -1,5 +1,6 @@
 import React from "react";
 import { useRecoilValue } from "recoil";
+import Dasboard from "../pages/dashboard/Dashboard";
 import Home from "../pages/home/Home";
 import Ingredients from "../pages/ingredients/Ingredients";
 import Login from "../pages/login/Login";
@@ -25,6 +26,7 @@ const Router: React.FC = ({}) => {
       {page == "ingredients" && <Ingredients />}
       {page == "login" && <Login />}
       {page == "register" && <Register />}
+      {page == "dashboard" && <Dasboard />}
     </>
   );
 };
