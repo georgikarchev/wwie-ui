@@ -1,23 +1,13 @@
-import { useState } from 'react'
-import './App.scss'
-import PhoneFrame from './components/phone-frame/PhoneFrame'
-import MainMenu from './components/main-menu/MainMenu'
-import Router from './router/Router'
-import SecondaryMenu from './components/secondary-menu/SecondaryMenu'
+import { RecoilRoot } from "recoil";
+import "./App.scss";
+import WhatWillIEat from "./WhatWillIEat";
 
 function App() {
-  const [currentPage, setCurrentPage] = useState("home");
-
-
   return (
-    <>
-      <PhoneFrame>
-        <Router page={currentPage} />
-        <MainMenu setPage={setCurrentPage}/>
-        <SecondaryMenu setPage={setCurrentPage}/>
-      </PhoneFrame>
-    </>
-  )
+    <RecoilRoot>
+      <WhatWillIEat />
+    </RecoilRoot>
+  );
 }
 
-export default App
+export default App;
