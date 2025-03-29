@@ -2,7 +2,9 @@ import React from "react";
 import { useRecoilValue } from "recoil";
 import Home from "../pages/home/Home";
 import Ingredients from "../pages/ingredients/Ingredients";
+import Login from "../pages/login/Login";
 import Meals from "../pages/meals/Meals";
+import Register from "../pages/register/Register";
 import { pageState } from "../state/pageState";
 
 // interface Props {
@@ -21,6 +23,8 @@ const Router: React.FC = ({}) => {
       {page == "home" && <Home />}
       {page == "meals" && <Meals />}
       {page == "ingredients" && <Ingredients />}
+      {page == "login" && <Login />}
+      {page == "register" && <Register />}
     </>
   );
 };
