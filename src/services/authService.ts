@@ -1,19 +1,17 @@
-import { authState } from "../state/authState";
 import { useSetRecoilState } from "recoil";
+import { useApi } from "../hooks/useApi";
+import { authState } from "../state/authState";
 
 export const useAuth = () => {
   const setAuth = useSetRecoilState(authState);
 
+  const api = useApi();
+
   const login = async (email: string, password: string) => {
-    const res = await fetch("/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
+    const res = await api.post("/auth/login", { email, password });
 
-    if (!res.ok) throw new Error("Login failed");
+    const token = res.data;
 
-    const { token } = await res.json();
     localStorage.setItem("jwt", token);
     setAuth(token);
   };
