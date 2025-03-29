@@ -1,9 +1,10 @@
-import React from 'react';
+import React from "react";
+import { useSetRecoilState } from "recoil";
+import { pageState } from "../../state/pageState";
 import "./MainMenu.scss";
 
-interface Props {setPage: React.Dispatch<React.SetStateAction<string>>}
-
-const MainMenu: React.FC<Props> = ({setPage}) => {
+const MainMenu: React.FC = ({}) => {
+  const setPage = useSetRecoilState(pageState);
 
   const go = (to: string) => setPage(to);
 
@@ -15,24 +16,27 @@ const MainMenu: React.FC<Props> = ({setPage}) => {
   const goShoppingList = () => go("shopping-list");
 
   return (
-    <div className='main-menu'>
-      <button className='button' onClick={goHome}>
-        <img className='icon' src='src/assets/icons/outlined/home.png' />
+    <div className="main-menu">
+      <button className="button" onClick={goHome}>
+        <img className="icon" src="src/assets/icons/outlined/home.png" />
       </button>
-      <button className='button' onClick={goAddMeal}>
-        <img className='icon' src='src/assets/icons/outlined/lightbulb.png' />
+      <button className="button" onClick={goAddMeal}>
+        <img className="icon" src="src/assets/icons/outlined/lightbulb.png" />
       </button>
-      <button className='button' onClick={goHistory}>
-        <img className='icon' src='src/assets/icons/outlined/history.png' />
+      <button className="button" onClick={goHistory}>
+        <img className="icon" src="src/assets/icons/outlined/history.png" />
       </button>
-      <button className='button' onClick={goMeals}>
-        <img className='icon' src='src/assets/icons/outlined/restaurant.png' />
+      <button className="button" onClick={goMeals}>
+        <img className="icon" src="src/assets/icons/outlined/restaurant.png" />
       </button>
-      <button className='button' onClick={goIngredients}>
-        <img className='icon' src='src/assets/icons/outlined/extension.png' />
+      <button className="button" onClick={goIngredients}>
+        <img className="icon" src="src/assets/icons/outlined/extension.png" />
       </button>
-      <button className='button' onClick={goShoppingList}>
-        <img className='icon' src='src/assets/icons/outlined/shopping_cart.png' />
+      <button className="button" onClick={goShoppingList}>
+        <img
+          className="icon"
+          src="src/assets/icons/outlined/shopping_cart.png"
+        />
       </button>
     </div>
   );
