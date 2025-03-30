@@ -1,0 +1,25 @@
+.ingredient {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 15px;
+  overflow: hidden;
+
+  border-radius: 5px;
+  background-color: white;
+  margin: 5px 0;
+
+  line-height: 1rem;
+
+  &__amount {
+    &__quantity {
+      font-weight: bold;
+      margin-right: 5px;
+    }
+
+    &__uom {
+      font-size: 0.8em;
+      font-weight: 100;
+    }
+  }
+}

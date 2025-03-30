@@ -1,3 +1,5 @@
+import { IngredientType } from "./IngredientType";
+
 export type MealType = {
   id: string;
   name: string;
@@ -6,6 +8,6 @@ export type MealType = {
   mealTypes: string[];
   createdOn?: string;
   updatedOn?: string;
-  ingredients?: string;
+  ingredients?: IngredientType[];
   deleted: string;
 };

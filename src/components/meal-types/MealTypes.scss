@@ -1,6 +1,6 @@
 .meal-type {
   margin: 20px 0;
-  background-color: whitesmoke;
+  background-color: #ccc;
   border-radius: 5px;
   overflow: hidden;
   // width: 100%;
@@ -18,7 +18,7 @@
 
     &-selected {
       background-color: black;
-      color: whitesmoke;
+      color: white;
     }
   }
 }

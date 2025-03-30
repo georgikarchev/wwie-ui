@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import DietaryCategories from "../../components/dietary-categories/DietaryCategories";
 import GoBack from "../../components/go-back/GoBack";
+import Ingredients from "../../components/ingredients/Ingredients";
 import MealTypes from "../../components/meal-types/MealTypes";
 import { useApi } from "../../hooks/useApi";
 import { pageState, PageStateType } from "../../state/pageState";
@@ -51,6 +52,8 @@ const ComponentName: React.FC<Props> = ({}) => {
       )}
 
       {meal?.mealTypes && <MealTypes types={meal?.mealTypes} />}
+
+      {meal?.ingredients && <Ingredients ingredients={meal?.ingredients} />}
     </div>
   );
 };

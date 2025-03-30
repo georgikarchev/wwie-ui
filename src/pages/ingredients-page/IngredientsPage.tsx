@@ -3,8 +3,8 @@ import "./IngredientsPage.scss";
 
 interface Props {}
 
-const Ingredients: React.FC<Props> = ({}) => {
+const IngredientsPage: React.FC<Props> = ({}) => {
   return <div>Ingredients</div>;
 };
 
-export default Ingredients;
+export default IngredientsPage;
