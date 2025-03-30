@@ -1,8 +1,8 @@
 .button--go-back {
-  position: fi;
+  position: relative;
   z-index: 2;
-  top: 13px;
-  left: 0;
+  // top: 13px;
+  // right: 0;
   padding: 4px 23px;
 
   transition: transform 0.1s eaase;
