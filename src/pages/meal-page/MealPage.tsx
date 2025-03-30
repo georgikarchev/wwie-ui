@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
+import DietaryCategories from "../../components/dietary-categories/DietaryCategories";
 import GoBack from "../../components/go-back/GoBack";
+import MealTypes from "../../components/meal-types/MealTypes";
 import { useApi } from "../../hooks/useApi";
 import { pageState, PageStateType } from "../../state/pageState";
 import { MealType } from "../../types/MealType";
@@ -30,8 +32,6 @@ const ComponentName: React.FC<Props> = ({}) => {
     fetchMeals();
   }, []);
 
-  console.log(meal);
-
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
 
@@ -47,8 +47,10 @@ const ComponentName: React.FC<Props> = ({}) => {
       )}
 
       {meal?.dietaryCategories && (
-        <section className="page__block">{meal?.dietaryCategories}</section>
+        <DietaryCategories categories={meal?.dietaryCategories} />
       )}
+
+      {meal?.mealTypes && <MealTypes types={meal?.mealTypes} />}
     </div>
   );
 };
