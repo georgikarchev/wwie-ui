@@ -18,7 +18,7 @@ const ComponentName: React.FC<Props> = ({}) => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchMeals = async () => {
+    const fetchMeal = async () => {
       try {
         const response = await api.get(`meals/${page?.queryParams?.id}`);
         setMeal(response.data);
@@ -30,7 +30,7 @@ const ComponentName: React.FC<Props> = ({}) => {
       }
     };
 
-    fetchMeals();
+    fetchMeal();
   }, []);
 
   if (loading) return <div>Loading...</div>;
