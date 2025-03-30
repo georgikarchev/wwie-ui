@@ -1,6 +1,15 @@
 import { atom } from "recoil";
 
-export const pageState = atom<string | null>({
+export type QueryParamsType = {
+  id: string;
+};
+
+export type PageStateType = {
+  name: string;
+  queryParams?: QueryParamsType;
+};
+
+export const pageState = atom<PageStateType | null>({
   key: "pageState",
-  default: "home",
+  default: { name: "home" } as PageStateType,
 });

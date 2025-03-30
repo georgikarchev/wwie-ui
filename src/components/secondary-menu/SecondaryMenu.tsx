@@ -7,7 +7,7 @@ import "./SecondaryMenu.scss";
 const SecondaryMenu: React.FC = () => {
   const isAuthenticated: boolean = useIsAuthenticated();
   const setPage = useSetRecoilState(pageState);
-  const go = (to: string) => setPage(to);
+  const go = (to: string) => setPage({ name: to });
 
   const goProfile = () => go("profile");
 

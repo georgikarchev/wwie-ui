@@ -14,8 +14,8 @@ const WhatWillIEat: React.FC<Props> = ({}) => {
   const [page, setPage] = useRecoilState(pageState);
 
   useEffect(() => {
-    if (token && (page === "home" || page === "login")) {
-      setPage("dashboard");
+    if (token && (page?.name === "home" || page?.name === "login")) {
+      setPage((state) => ({ ...state, name: "dashboard" }));
       console.log(`here`);
     }
   }, [token, page]);

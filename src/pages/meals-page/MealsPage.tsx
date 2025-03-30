@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import Meal from "../../components/meal/Meal";
 import { useApi } from "../../hooks/useApi";
+import "./MealsPage.scss";
 
 const Meals: React.FC = () => {
-  const api = useApi(); // Get the axios instance from your hook
+  const api = useApi();
   const [meals, setMeals] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -10,9 +12,8 @@ const Meals: React.FC = () => {
   useEffect(() => {
     const fetchMeals = async () => {
       try {
-        const response = await api.get("meals"); // API call
+        const response = await api.get("meals");
         setMeals(response.data);
-        console.log(response.data);
       } catch (err) {
         setError("Error fetching meals");
       } finally {
@@ -27,17 +28,21 @@ const Meals: React.FC = () => {
   if (error) return <div>{error}</div>;
 
   return (
-    <div>
-      <h1>Meals</h1>
+    <div className="page page--meals">
+      <h1 className="page__title">Meals</h1>
+      {/* <section className="page__block"> */}
       {meals.length > 0 ? (
-        <ul>
-          {meals.map((meal) => (
-            <li key={meal.id}>{meal.name}</li>
-          ))}
-        </ul>
+        <>
+          {meals.map((meal) =>
+            !meal ? null : (
+              <Meal key={meal?.id} id={meal?.id} name={meal.name} />
+            ),
+          )}
+        </>
       ) : (
         <p>No meals available.</p>
       )}
+      {/* </section> */}
     </div>
   );
 };

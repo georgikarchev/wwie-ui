@@ -1,0 +1,30 @@
+.button--go-back {
+  position: fi;
+  z-index: 2;
+  top: 13px;
+  left: 0;
+  padding: 4px 23px;
+
+  transition: transform 0.1s eaase;
+  border-radius: 100%;
+  background-color: white;
+  padding: 5px;
+  margin: unset;
+  display: flex;
+  justify-content: center;
+  box-shadow:
+    rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px,
+    rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px,
+    rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+  &:active {
+    transform: translateY(1px); /* Moves the button down */
+  }
+
+  & > .icon {
+    width: 24px;
+    height: 24px;
+  }
+}

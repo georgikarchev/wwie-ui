@@ -6,7 +6,7 @@ import "./MainMenu.scss";
 const MainMenu: React.FC = ({}) => {
   const setPage = useSetRecoilState(pageState);
 
-  const go = (to: string) => setPage(to);
+  const go = (to: string) => setPage({ name: to });
 
   const goHome = () => go("home");
   const goAddMeal = () => go("add-meal");

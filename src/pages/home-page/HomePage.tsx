@@ -2,13 +2,13 @@ import React from "react";
 import { useSetRecoilState } from "recoil";
 import LogoBig from "../../components/logo-big/LogoBig";
 import { pageState } from "../../state/pageState";
-import "./Home.scss";
+import "./HomePage.scss";
 
 interface Props {}
 
 const Home: React.FC<Props> = ({}) => {
   const setPage = useSetRecoilState(pageState);
-  const go = (to: string) => setPage(to);
+  const go = (to: string) => setPage({ name: to });
   const goLogin = () => go("login");
   const goRegister = () => go("register");
 
