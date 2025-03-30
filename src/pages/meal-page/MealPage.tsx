@@ -24,7 +24,7 @@ const ComponentName: React.FC<Props> = ({}) => {
         setMeal(response.data);
         console.log(response.data);
       } catch (err) {
-        setError("Error fetching meals");
+        setError("Error fetching meal data");
       } finally {
         setLoading(false);
       }
