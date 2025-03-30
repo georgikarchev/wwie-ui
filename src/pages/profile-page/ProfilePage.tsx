@@ -16,12 +16,15 @@ const ProfilePage: React.FC<Props> = ({}) => {
     // login(email, password);
   };
 
-  const setEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
-  };
+  const setUserProp = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    if (!e.target.name) {
+      return;
+    }
 
-  const setPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
+    setUser((state) => ({
+      ...state,
+      [`${e.target.name}`]: e.target.value,
+    }));
   };
 
   useEffect(() => {
@@ -50,26 +53,52 @@ const ProfilePage: React.FC<Props> = ({}) => {
         <section className="login-form">
           <form onSubmit={handleSubmit} className="login-form__form">
             <div className="form-row">
+              <label>Username</label>
+              <input
+                name="username"
+                type="text"
+                value={user?.username || ""}
+                onChange={setUserProp}
+                required
+              />
+            </div>
+            <div className="form-row">
               <label>Email</label>
               <input
+                name="email"
                 type="email"
-                value={user?.email}
-                onChange={setEmail}
+                value={user?.email || ""}
+                onChange={setUserProp}
                 required
               />
             </div>
             <div className="form-row">
               <label>Password</label>
               <input
+                name="password"
                 type="password"
-                value={user?.password}
-                onChange={setPassword}
+                value={user?.password || ""}
+                onChange={setUserProp}
                 required
               />
+              <div className="form-row">
+                <label>Profile picture</label>
+                <input
+                  name="profilePictureLink"
+                  type="text"
+                  value={user?.profilePictureLink || ""}
+                  onChange={setUserProp}
+                  required
+                />
+              </div>
             </div>
-            <button type="submit">Login</button>
+            <button className="form-submit" type="submit">
+              Save
+            </button>
           </form>
         </section>
+        {user?.createdOn && <div>Created on: {user?.createdOn}</div>}
+        {user?.createdOn && <div>Updated on: {user?.updatedOn}</div>}
       </section>
     </div>
   );

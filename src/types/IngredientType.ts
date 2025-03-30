@@ -6,6 +6,6 @@ export type IngredientType = {
   createdOn: string;
   updatedOn: string;
   deleted: boolean;
-  quantity: number;
-  unitOfMeasurement: string;
+  quantity?: number;
+  unitOfMeasurement?: string;
 };
