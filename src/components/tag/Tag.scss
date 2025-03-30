@@ -1,0 +1,16 @@
+.tag {
+  background-color: black;
+  color: whitesmoke;
+  margin: unset;
+  padding: 3px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  white-space: nowrap;
+  display: inline-block;
+
+  margin: 2px;
+
+  // &:not(:last-of-type) {
+  //   margin-right: 5px;
+  // }
+}
