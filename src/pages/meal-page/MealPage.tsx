@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import GoBack from "../../components/go-back/GoBack";
 import { useApi } from "../../hooks/useApi";
 import { pageState, PageStateType } from "../../state/pageState";
@@ -8,7 +8,7 @@ import { MealType } from "../../types/MealType";
 interface Props {}
 
 const ComponentName: React.FC<Props> = ({}) => {
-  const [page, setPage] = useRecoilState(pageState);
+  const page = useRecoilValue(pageState);
   const api = useApi();
   const [meal, setMeal] = useState<MealType | null>(null);
   const [loading, setLoading] = useState(true);
