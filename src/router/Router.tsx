@@ -6,6 +6,7 @@ import Ingredients from "../pages/ingredients-page/IngredientsPage";
 import Login from "../pages/login-page/LoginPage";
 import MealPage from "../pages/meal-page/MealPage";
 import MealsPage from "../pages/meals-page/MealsPage";
+import ProfilePage from "../pages/profile-page/ProfilePage";
 import Register from "../pages/register-page/RegisterPage";
 import { pageState } from "../state/pageState";
 
@@ -21,6 +22,7 @@ const Router: React.FC = () => {
       {page?.name == "login" && <Login />}
       {page?.name == "register" && <Register />}
       {page?.name == "dashboard" && <Dasboard />}
+      {page?.name == "profile" && <ProfilePage />}
     </>
   );
 };
