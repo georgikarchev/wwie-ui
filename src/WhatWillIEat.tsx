@@ -1,31 +1,31 @@
 import React, { useEffect } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import MainMenu from "./components/main-menu/MainMenu";
 import PhoneFrame from "./components/phone-frame/PhoneFrame";
 import SecondaryMenu from "./components/secondary-menu/SecondaryMenu";
+import { useIsAuthenticated } from "./hooks/useIsAuthenticated";
 import Router from "./router/Router";
-import { authState } from "./state/authState";
 import { pageState } from "./state/pageState";
 
 interface Props {}
 
 const WhatWillIEat: React.FC<Props> = ({}) => {
-  const token = useRecoilValue(authState);
+  const isAuthenticated = useIsAuthenticated();
   const [page, setPage] = useRecoilState(pageState);
 
   useEffect(() => {
-    if (token && (page?.name === "home" || page?.name === "login")) {
+    if (isAuthenticated && (page?.name === "home" || page?.name === "login")) {
       setPage((state) => ({ ...state, name: "dashboard" }));
       console.log(`here`);
     }
-  }, [token, page]);
+  }, [isAuthenticated, page]);
 
   return (
     <div id="what-will-i-eat-app">
       <PhoneFrame>
         <Router />
-        <MainMenu />
-        <SecondaryMenu />
+        {isAuthenticated && <MainMenu />}
+        {isAuthenticated && <SecondaryMenu />}
       </PhoneFrame>
     </div>
   );
