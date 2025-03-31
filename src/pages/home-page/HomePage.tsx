@@ -15,7 +15,7 @@ const Home: React.FC<Props> = ({}) => {
   return (
     <div className="page page--home">
       <LogoBig />
-      <section>
+      <section className="login-and-register-buttons">
         <button onClick={goLogin}>login</button> |{" "}
         <button onClick={goRegister}>register</button>
       </section>
