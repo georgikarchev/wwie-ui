@@ -1,14 +1,26 @@
 import React, { useEffect, useState } from "react";
+import { useSetRecoilState } from "recoil";
 import { useApi } from "../../hooks/useApi";
+import { useAuth } from "../../services/authService";
+import { pageState } from "../../state/pageState";
 import { UserType } from "../../types/UserType";
 
 interface Props {}
 
 const ProfilePage: React.FC<Props> = ({}) => {
   const api = useApi();
+  const { logout } = useAuth();
+  const setPage = useSetRecoilState(pageState);
+  const go = (to: string) => setPage({ name: to });
+  const goHome = () => go("home");
   const [user, setUser] = useState<UserType | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  const handleLogout = () => {
+    logout();
+    goHome();
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -97,8 +109,14 @@ const ProfilePage: React.FC<Props> = ({}) => {
             </button>
           </form>
         </section>
+        <br />
         {user?.createdOn && <div>Created on: {user?.createdOn}</div>}
+        <br />
         {user?.createdOn && <div>Updated on: {user?.updatedOn}</div>}
+        <br />
+        <button className="form-submit" onClick={handleLogout}>
+          logout
+        </button>
       </section>
     </div>
   );
