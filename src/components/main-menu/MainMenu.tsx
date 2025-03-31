@@ -8,7 +8,7 @@ const MainMenu: React.FC = ({}) => {
 
   const go = (to: string) => setPage({ name: to });
 
-  const goHome = () => go("home");
+  const goDashboard = () => go("dashboard");
   const goAddMeal = () => go("add-meal");
   const goHistory = () => go("hostory");
   const goMeals = () => go("meals");
@@ -17,7 +17,7 @@ const MainMenu: React.FC = ({}) => {
 
   return (
     <div className="main-menu">
-      <button className="button" onClick={goHome}>
+      <button className="button" onClick={goDashboard}>
         <img className="icon" src="src/assets/icons/outlined/home.png" />
       </button>
       <button className="button" onClick={goAddMeal}>
