@@ -4,6 +4,7 @@ import MainMenu from "./components/main-menu/MainMenu";
 import PhoneFrame from "./components/phone-frame/PhoneFrame";
 import SecondaryMenu from "./components/secondary-menu/SecondaryMenu";
 import { useIsAuthenticated } from "./hooks/useIsAuthenticated";
+import { useUser } from "./hooks/useUser";
 import Router from "./router/Router";
 import { pageState } from "./state/pageState";
 
@@ -12,6 +13,7 @@ interface Props {}
 const WhatWillIEat: React.FC<Props> = ({}) => {
   const isAuthenticated = useIsAuthenticated();
   const [page, setPage] = useRecoilState(pageState);
+  useUser(isAuthenticated); // make sure userState has a valid user if logged in
 
   useEffect(() => {
     if (

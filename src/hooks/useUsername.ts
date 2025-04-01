@@ -9,7 +9,5 @@ export const useUsername = () => {
   //   console.log(user);
   // }
 
-  console.log(userFromLocalStorage);
-
   return userFromLocalStorage;
 };

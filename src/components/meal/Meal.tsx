@@ -1,5 +1,6 @@
 import React from "react";
-import { useSetRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { backState } from "../../state/backState";
 import { pageState } from "../../state/pageState";
 import "./Meal.scss";
 
@@ -13,8 +14,12 @@ const PLACEHOLDER_IMAGE =
   "src/assets/luisa-brimble-2RrBE90w0T8-unsplash-small.jpg";
 
 const Meal: React.FC<Props> = ({ id, name, imageUrl }) => {
-  const setPage = useSetRecoilState(pageState);
-  const goMeal = () => setPage({ name: "meal", queryParams: { id: id } });
+  const [page, setPage] = useRecoilState(pageState);
+  const setBack = useSetRecoilState(backState);
+  const goMeal = () => {
+    setBack(page);
+    setPage({ name: "meal", queryParams: { id: id } });
+  };
 
   return (
     <article className="meal" onClick={goMeal}>

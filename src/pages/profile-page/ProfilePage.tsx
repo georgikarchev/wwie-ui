@@ -1,20 +1,22 @@
-import React, { useEffect, useState } from "react";
-import { useSetRecoilState } from "recoil";
+import React, { useState } from "react";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { useApi } from "../../hooks/useApi";
+import { useUser } from "../../hooks/useUser";
 import { useAuth } from "../../services/authService";
 import { pageState } from "../../state/pageState";
-import { UserType } from "../../types/UserType";
+import { userState } from "../../state/userState";
 
 interface Props {}
 
 const ProfilePage: React.FC<Props> = ({}) => {
+  useUser();
   const api = useApi();
   const { logout, updateProfile } = useAuth();
   const setPage = useSetRecoilState(pageState);
   const go = (to: string) => setPage({ name: to });
   const goHome = () => go("home");
-  const [user, setUser] = useState<UserType | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useRecoilState(userState);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const handleLogout = () => {
@@ -38,22 +40,22 @@ const ProfilePage: React.FC<Props> = ({}) => {
     }));
   };
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await api.get(`users/me`);
-        setUser(response.data);
-        console.log(response.data);
-        localStorage.setItem("user.username", response?.data?.username);
-      } catch (err) {
-        setError("Error fetching user data");
-      } finally {
-        setLoading(false);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchUser = async () => {
+  //     try {
+  //       const response = await api.get(`users/me`);
+  //       setUser(response.data);
+  //       // console.log(response.data);
+  //       localStorage.setItem("user.username", response?.data?.username);
+  //     } catch (err) {
+  //       setError("Error fetching user data");
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    fetchUser();
-  }, []);
+  //   fetchUser();
+  // }, []);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;

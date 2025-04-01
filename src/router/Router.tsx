@@ -5,6 +5,7 @@ import Home from "../pages/home-page/HomePage";
 import IngredientPage from "../pages/ingredient-page/IngredientPage";
 import IngredientsPage from "../pages/ingredients-page/IngredientsPage";
 import Login from "../pages/login-page/LoginPage";
+import MealEditPage from "../pages/meal-edit-page/MealEditPage";
 import MealPage from "../pages/meal-page/MealPage";
 import MealsPage from "../pages/meals-page/MealsPage";
 import ProfilePage from "../pages/profile-page/ProfilePage";
@@ -19,6 +20,7 @@ const Router: React.FC = () => {
       {page?.name == "home" && <Home />}
       {page?.name == "meals" && <MealsPage />}
       {page?.name == "meal" && <MealPage />}
+      {page?.name == "meal-edit" && <MealEditPage />}
       {page?.name == "ingredients" && <IngredientsPage />}
       {page?.name == "ingredient" && <IngredientPage />}
       {page?.name == "login" && <Login />}

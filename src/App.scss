@@ -63,7 +63,7 @@
     background-color: rgba($color: #fff, $alpha: 0.85);
     border-radius: 15px 15px 0px 15px;
     padding: 20px;
-    margin: unset;
+    margin: 20px 0px;
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
@@ -73,6 +73,16 @@
       rgba(0, 0, 0, 0.12) 0px 4px 6px,
       rgba(0, 0, 0, 0.17) 0px 12px 13px,
       rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & > button {
+      margin: 3px;
+    }
   }
 }
 
