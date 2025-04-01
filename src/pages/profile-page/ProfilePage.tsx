@@ -45,6 +45,7 @@ const ProfilePage: React.FC<Props> = ({}) => {
         const response = await api.get(`users/me`);
         setUser(response.data);
         console.log(response.data);
+        localStorage.setItem("user.username", response?.data?.username);
       } catch (err) {
         setError("Error fetching user data");
       } finally {
