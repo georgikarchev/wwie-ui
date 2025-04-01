@@ -25,9 +25,7 @@ const ProfilePage: React.FC<Props> = ({}) => {
   const handleSubmit = (e: React.FormEvent) => {
     console.log(`Update Profile handleSubmit`);
     e.preventDefault();
-    console.log(user);
     updateProfile(user?.username, user?.email, user?.profilePictureLink);
-    // login(email, password);
   };
 
   const setUserProp = (e: React.ChangeEvent<HTMLInputElement>): void => {
