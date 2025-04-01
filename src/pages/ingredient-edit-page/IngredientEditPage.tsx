@@ -7,7 +7,7 @@ import { useIngredient } from "../../hooks/useIngredient";
 import { useIsUserAdmin } from "../../hooks/useIsUserAdmin";
 import { backState } from "../../state/backState";
 import { ingredientState } from "../../state/ingredientState";
-import { pageState } from "../../state/pageState";
+import { pageState, PageStateType } from "../../state/pageState";
 
 const IngredientEditPage: React.FC = () => {
   const isAdmin = useIsUserAdmin();
@@ -17,8 +17,7 @@ const IngredientEditPage: React.FC = () => {
   const [ingredient, setIngredient] = useRecoilState(ingredientState);
   const api = useApi();
   const [error, setError] = useState<string | null>(null);
-
-  console.log(ingredient);
+  const ingredientsListing: PageStateType = { name: "ingredients" };
 
   const updateIngredient = async (name: string, description: string) => {
     const res = await api.put(`/ingredients/${ingredient?.id}`, {
@@ -59,7 +58,7 @@ const IngredientEditPage: React.FC = () => {
     if (!!ingredient?.id && ingredient?.id !== undefined) {
       console.log("[LOG] delete item");
       await deleteIngredient(ingredient?.id);
-      setPage(back);
+      setPage(ingredientsListing);
     }
   };
 
