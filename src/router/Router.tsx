@@ -2,6 +2,7 @@ import React from "react";
 import { useRecoilValue } from "recoil";
 import Dasboard from "../pages/dashboard/Dashboard";
 import Home from "../pages/home-page/HomePage";
+import IngredientEditPage from "../pages/ingredient-edit-page/IngredientEditPage";
 import IngredientPage from "../pages/ingredient-page/IngredientPage";
 import IngredientsPage from "../pages/ingredients-page/IngredientsPage";
 import Login from "../pages/login-page/LoginPage";
@@ -23,6 +24,7 @@ const Router: React.FC = () => {
       {page?.name == "meal-edit" && <MealEditPage />}
       {page?.name == "ingredients" && <IngredientsPage />}
       {page?.name == "ingredient" && <IngredientPage />}
+      {page?.name == "ingredient-edit" && <IngredientEditPage />}
       {page?.name == "login" && <Login />}
       {page?.name == "register" && <Register />}
       {page?.name == "dashboard" && <Dasboard />}

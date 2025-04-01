@@ -73,7 +73,9 @@ const MealPage: React.FC = () => {
 
       {meal?.mealTypes && <MealTypes types={meal?.mealTypes} />}
 
-      {meal?.ingredients && <Ingredients ingredients={meal?.ingredients} />}
+      {meal?.ingredients && (
+        <Ingredients ingredients={meal?.ingredients} disableLinks={true} />
+      )}
     </div>
   );
 };

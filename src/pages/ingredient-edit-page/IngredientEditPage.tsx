@@ -3,42 +3,44 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import DeleteButton from "../../components/delete-button/DeleteButton";
 import GoBack from "../../components/go-back/GoBack";
 import { useApi } from "../../hooks/useApi";
+import { useIngredient } from "../../hooks/useIngredient";
 import { useIsUserAdmin } from "../../hooks/useIsUserAdmin";
-import { useMeal } from "../../hooks/useMeal";
 import { backState } from "../../state/backState";
-import { mealState } from "../../state/mealState";
+import { ingredientState } from "../../state/ingredientState";
 import { pageState } from "../../state/pageState";
 
-const MealEditPage: React.FC = () => {
+const IngredientEditPage: React.FC = () => {
   const isAdmin = useIsUserAdmin();
   const [page, setPage] = useRecoilState(pageState);
   const back = useRecoilValue(backState);
-  useMeal(page?.queryParams?.id);
-  const [meal, setMeal] = useRecoilState(mealState);
+  useIngredient(page?.queryParams?.id);
+  const [ingredient, setIngredient] = useRecoilState(ingredientState);
   const api = useApi();
   const [error, setError] = useState<string | null>(null);
 
-  const updateMeal = async (name: string, description: string) => {
-    const res = await api.put(`/meals/${meal?.id}`, {
+  console.log(ingredient);
+
+  const updateIngredient = async (name: string, description: string) => {
+    const res = await api.put(`/ingredients/${ingredient?.id}`, {
       name,
       description,
     });
-    setMeal(res.data);
+    setIngredient(res.data);
     setPage(back);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("handle submit edit meal page");
-    updateMeal(meal.name, meal.description);
+    console.log("handle submit edit ingredient page");
+    updateIngredient(ingredient.name, ingredient.description);
   };
 
-  const setMealProp = (e: React.ChangeEvent<HTMLInputElement>): void => {
+  const setIngredientProp = (e: React.ChangeEvent<HTMLInputElement>): void => {
     if (!e.target.name) {
       return;
     }
 
-    setMeal((state) => ({
+    setIngredient((state) => ({
       ...state,
       [`${e.target.name}`]: e.target.value,
     }));
@@ -46,17 +48,17 @@ const MealEditPage: React.FC = () => {
 
   const deleteIngredient = async (ingredientId: string) => {
     try {
-      await api.delete("/meals/" + ingredientId);
+      await api.delete("/ingredients/" + ingredientId);
     } catch (err) {
-      setError("Error deleting meal");
+      setError("Error deleting ingredient");
     } finally {
     }
   };
 
   const deleteItem = async () => {
-    if (!!meal?.id && meal?.id !== undefined) {
+    if (!!ingredient?.id && ingredient?.id !== undefined) {
       console.log("[LOG] delete item");
-      await deleteIngredient(meal?.id);
+      await deleteIngredient(ingredient?.id);
       setPage(back);
     }
   };
@@ -69,7 +71,7 @@ const MealEditPage: React.FC = () => {
         <GoBack to={back} />
         {isAdmin && <DeleteButton onClick={deleteItem} />}
       </section>
-      <h1 className="page__title">{meal?.name}</h1>
+      <h1 className="page__title">{ingredient?.name}</h1>
       <section className="page__block">
         <section className="login-form">
           <form onSubmit={handleSubmit} className="login-form__form">
@@ -78,8 +80,8 @@ const MealEditPage: React.FC = () => {
               <input
                 name="name"
                 type="text"
-                value={meal?.name || ""}
-                onChange={setMealProp}
+                value={ingredient?.name || ""}
+                onChange={setIngredientProp}
                 required
               />
             </div>
@@ -88,8 +90,8 @@ const MealEditPage: React.FC = () => {
               <input
                 name="description"
                 type="description"
-                value={meal?.description || ""}
-                onChange={setMealProp}
+                value={ingredient?.description || ""}
+                onChange={setIngredientProp}
                 required
               />
             </div>
@@ -99,12 +101,16 @@ const MealEditPage: React.FC = () => {
           </form>
         </section>
         <br />
-        {meal?.createdOn && <div>Created on: {meal?.createdOn}</div>}
+        {ingredient?.createdOn && (
+          <div>Created on: {ingredient?.createdOn}</div>
+        )}
         <br />
-        {meal?.createdOn && <div>Updated on: {meal?.updatedOn}</div>}
+        {ingredient?.createdOn && (
+          <div>Updated on: {ingredient?.updatedOn}</div>
+        )}
       </section>
     </div>
   );
 };
 
-export default MealEditPage;
+export default IngredientEditPage;

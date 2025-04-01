@@ -5,13 +5,21 @@ import "./Ingredients.scss";
 
 interface Props {
   ingredients: IngredientType[];
+  disableLinks?: boolean;
 }
 
-const Ingredients: React.FC<Props> = ({ ingredients }) => {
+const Ingredients: React.FC<Props> = ({
+  ingredients,
+  disableLinks = false,
+}) => {
   return (
     <div className="ingredients">
       {ingredients.map((ingredient) => (
-        <Ingredient key={ingredient.id} ingredient={ingredient} />
+        <Ingredient
+          key={ingredient.id}
+          ingredient={ingredient}
+          disableLink={disableLinks}
+        />
       ))}
     </div>
   );

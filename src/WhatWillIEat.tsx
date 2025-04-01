@@ -23,7 +23,6 @@ const WhatWillIEat: React.FC<Props> = ({}) => {
         page?.name === "register")
     ) {
       setPage((state) => ({ ...state, name: "dashboard" }));
-      console.log(`here`);
     }
   }, [isAuthenticated, page]);
 

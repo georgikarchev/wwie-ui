@@ -7,12 +7,16 @@ import "./Ingredient.scss";
 
 interface Props {
   ingredient: IngredientType;
+  disableLink?: boolean;
 }
 
-const Ingredient: React.FC<Props> = ({ ingredient }) => {
+const Ingredient: React.FC<Props> = ({ ingredient, disableLink = false }) => {
   const [page, setPage] = useRecoilState(pageState);
   const setBack = useSetRecoilState(backState);
   const goIngredient = () => {
+    if (disableLink) {
+      return;
+    }
     setBack(page);
     setPage({ name: "ingredient", queryParams: { id: ingredient?.id } });
   };
