@@ -8,9 +8,7 @@ import { useApi } from "../../hooks/useApi";
 import { pageState, PageStateType } from "../../state/pageState";
 import { MealType } from "../../types/MealType";
 
-interface Props {}
-
-const ComponentName: React.FC<Props> = ({}) => {
+const MealPage: React.FC = () => {
   const page = useRecoilValue(pageState);
   const api = useApi();
   const [meal, setMeal] = useState<MealType | null>(null);
@@ -58,4 +56,4 @@ const ComponentName: React.FC<Props> = ({}) => {
   );
 };
 
-export default ComponentName;
+export default MealPage;

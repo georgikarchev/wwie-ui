@@ -1,4 +1,7 @@
 import React from "react";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { backState } from "../../state/backState";
+import { pageState } from "../../state/pageState";
 import { IngredientType } from "../../types/IngredientType";
 import "./Ingredient.scss";
 
@@ -7,8 +10,15 @@ interface Props {
 }
 
 const Ingredient: React.FC<Props> = ({ ingredient }) => {
+  const [page, setPage] = useRecoilState(pageState);
+  const setBack = useSetRecoilState(backState);
+  const goIngredient = () => {
+    setBack(page);
+    setPage({ name: "ingredient", queryParams: { id: ingredient?.id } });
+  };
+
   return (
-    <article className="ingredient">
+    <article className="ingredient" onClick={goIngredient}>
       <h4>{ingredient.name}</h4>
       <div className="ingredient__amount">
         <span className="ingredient__amount__quantity">
