@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import DeleteButton from "../../components/delete-button/DeleteButton";
 import GoBack from "../../components/go-back/GoBack";
 import { useApi } from "../../hooks/useApi";
@@ -14,7 +14,7 @@ interface Props {}
 const MealEditPage: React.FC<Props> = ({}) => {
   const isAdmin = useIsUserAdmin();
   const [page, setPage] = useRecoilState(pageState);
-  const [back, setBack] = useRecoilState(backState);
+  const back = useRecoilValue(backState);
   useMeal(page?.queryParams?.id);
   const [meal, setMeal] = useRecoilState(mealState);
   const api = useApi();
@@ -26,6 +26,7 @@ const MealEditPage: React.FC<Props> = ({}) => {
       description,
     });
     setMeal(res.data);
+    setPage(back);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -61,6 +62,8 @@ const MealEditPage: React.FC<Props> = ({}) => {
       setPage(back);
     }
   };
+
+  if (error) return <div>{error}</div>;
 
   return (
     <div className="page page--meal-edit">
