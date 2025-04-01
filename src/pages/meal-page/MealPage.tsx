@@ -20,7 +20,6 @@ const MealPage: React.FC = () => {
       try {
         const response = await api.get(`meals/${page?.queryParams?.id}`);
         setMeal(response.data);
-        console.log(response.data);
       } catch (err) {
         setError("Error fetching meal data");
       } finally {

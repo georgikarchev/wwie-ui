@@ -23,7 +23,6 @@ const ProfilePage: React.FC<Props> = ({}) => {
   };
 
   const handleSubmit = (e: React.FormEvent) => {
-    console.log(`Update Profile handleSubmit`);
     e.preventDefault();
     updateProfile(user?.username, user?.email, user?.profilePictureLink);
   };

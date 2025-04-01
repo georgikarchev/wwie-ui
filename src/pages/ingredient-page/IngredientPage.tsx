@@ -20,7 +20,6 @@ const IngredientPage: React.FC = () => {
       try {
         const response = await api.get(`ingredients/${page?.queryParams?.id}`);
         setIngredient(response.data);
-        console.log(response.data);
       } catch (err) {
         setError("Error fetching ingredient data");
       } finally {
