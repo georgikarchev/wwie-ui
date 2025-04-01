@@ -9,7 +9,7 @@ interface Props {}
 
 const ProfilePage: React.FC<Props> = ({}) => {
   const api = useApi();
-  const { logout } = useAuth();
+  const { logout, updateProfile } = useAuth();
   const setPage = useSetRecoilState(pageState);
   const go = (to: string) => setPage({ name: to });
   const goHome = () => go("home");
@@ -23,8 +23,10 @@ const ProfilePage: React.FC<Props> = ({}) => {
   };
 
   const handleSubmit = (e: React.FormEvent) => {
+    console.log(`Update Profile handleSubmit`);
     e.preventDefault();
     console.log(user);
+    updateProfile(user?.username, user?.email, user?.profilePictureLink);
     // login(email, password);
   };
 
@@ -85,14 +87,6 @@ const ProfilePage: React.FC<Props> = ({}) => {
               />
             </div>
             <div className="form-row">
-              <label>Password</label>
-              <input
-                name="password"
-                type="password"
-                value={user?.password || ""}
-                onChange={setUserProp}
-                required
-              />
               <div className="form-row">
                 <label>Profile picture</label>
                 <input

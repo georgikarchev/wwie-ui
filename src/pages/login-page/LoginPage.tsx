@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import { useSetRecoilState } from "recoil";
 import { useAuth } from "../../services/authService";
+import { pageState } from "../../state/pageState";
 import "./LoginPage.scss";
 
 const Login: React.FC = () => {
@@ -7,10 +9,14 @@ const Login: React.FC = () => {
   const [password, setPassword] = useState("");
   const { login } = useAuth();
 
+  const setPage = useSetRecoilState(pageState);
+  const go = (to: string) => setPage({ name: to });
+  const goHome = () => go("home");
+  const goRegister = () => go("register");
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log({ email, password });
-    // Call API here
     login(email, password);
   };
 
@@ -37,8 +43,14 @@ const Login: React.FC = () => {
                 required
               />
             </div>
-            <button type="submit">Login</button>
+            <button type="submit">login</button>
           </form>
+        </section>
+        <br />
+        <br />
+        <section className="login-and-register-buttons">
+          <button onClick={goHome}>home</button> |{" "}
+          <button onClick={goRegister}>register</button>
         </section>
       </section>
     </div>
