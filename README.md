@@ -28,7 +28,9 @@ WWIE-UI is a React-based frontend for the WWIE project. It communicates exclusiv
 
 ## Proxy Connection
 
-This app relies on `wwie-ui-proxy` for all requests. Make sure the proxy service is properly configured before using the UI.
+This app relies on `wwie-ui-proxy` for all requests.
+Make sure the proxy service is properly configured before using the UI.
+The expected address for `wwie-ui-proxy` is http://localhost:8085
 
 ## License
 
