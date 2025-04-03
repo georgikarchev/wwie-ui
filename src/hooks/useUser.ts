@@ -1,16 +1,26 @@
-import { useEffect } from "react";
-import { useRecoilState } from "recoil";
+import { useEffect, useState } from "react";
+import { SetterOrUpdater, useRecoilState } from "recoil";
 import { userState } from "../state/userState";
 import { UserType } from "../types/UserType";
 import { useApi } from "./useApi";
 
-export const useUser = (isAuthenticated?: boolean): UserType | null => {
+type UseUserReturnType = {
+  user: UserType | null;
+  setUser: SetterOrUpdater<UserType | null>;
+  loading: boolean;
+  error: string | null;
+};
+
+export const useUser = (isAuthenticated?: boolean): UseUserReturnType => {
   const api = useApi();
   const [user, setUser] = useRecoilState(userState);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (isAuthenticated && !user?.id) {
       const fetchUser = async () => {
+        setLoading(true);
         try {
           const response = await api.get(`users/me`);
           setUser(response.data);
@@ -18,6 +28,9 @@ export const useUser = (isAuthenticated?: boolean): UserType | null => {
           localStorage.setItem("user.username", response?.data?.username);
         } catch (err) {
           console.log("Error fetching user data");
+          setError(err as string);
+        } finally {
+          setLoading(false);
         }
       };
 
@@ -25,5 +38,5 @@ export const useUser = (isAuthenticated?: boolean): UserType | null => {
     }
   }, [user, isAuthenticated]);
 
-  return user;
+  return { user, setUser, loading, error };
 };

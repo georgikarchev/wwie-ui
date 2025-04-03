@@ -1,23 +1,20 @@
-import React, { useState } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
-import { useApi } from "../../hooks/useApi";
+import React from "react";
+import { useSetRecoilState } from "recoil";
 import { useUser } from "../../hooks/useUser";
 import { useAuth } from "../../services/authService";
 import { pageState } from "../../state/pageState";
-import { userState } from "../../state/userState";
 
 interface Props {}
 
 const ProfilePage: React.FC<Props> = ({}) => {
-  useUser();
-  const api = useApi();
+  const { user, setUser, loading, error } = useUser();
   const { logout, updateProfile } = useAuth();
   const setPage = useSetRecoilState(pageState);
   const go = (to: string) => setPage({ name: to });
   const goHome = () => go("home");
-  const [user, setUser] = useRecoilState(userState);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  // const [user, setUser] = useRecoilState(userState);
+  // const [loading, setLoading] = useState(false);
+  // const [error, setError] = useState<string | null>(null);
 
   const handleLogout = () => {
     logout();

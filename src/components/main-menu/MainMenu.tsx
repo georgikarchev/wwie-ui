@@ -14,6 +14,7 @@ const MainMenu: React.FC = ({}) => {
   const goMeals = () => go("meals");
   const goIngredients = () => go("ingredients");
   const goShoppingList = () => go("shopping-list");
+  const goUsers = () => go("users");
 
   return (
     <div className="main-menu">
@@ -31,6 +32,12 @@ const MainMenu: React.FC = ({}) => {
       </button>
       <button className="button" onClick={goIngredients}>
         <img className="icon" src="src/assets/icons/outlined/extension.png" />
+      </button>
+      <button className="button" onClick={goUsers}>
+        <img
+          className="icon"
+          src="src/assets/icons/outlined/people_outline.png"
+        />
       </button>
       <button className="button" onClick={goShoppingList}>
         <img

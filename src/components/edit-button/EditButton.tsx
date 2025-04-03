@@ -5,7 +5,7 @@ interface Props {
   go: () => void | null;
 }
 
-const EtidButton: React.FC<Props> = ({ go }) => {
+const EditButton: React.FC<Props> = ({ go }) => {
   return (
     <button className="button button--edit" onClick={go}>
       <img className="icon" src="src/assets/icons/outlined/edit.png" />
@@ -13,4 +13,4 @@ const EtidButton: React.FC<Props> = ({ go }) => {
   );
 };
 
-export default EtidButton;
+export default EditButton;

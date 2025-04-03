@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import DietaryCategories from "../../components/dietary-categories/DietaryCategories";
 import EditButton from "../../components/edit-button/EditButton";
 import GoBack from "../../components/go-back/GoBack";
@@ -12,7 +12,7 @@ import { IngredientType } from "../../types/IngredientType";
 const IngredientPage: React.FC = () => {
   const isAdmin = useIsUserAdmin();
   const [page, setPage] = useRecoilState(pageState);
-  const [back, setBack] = useRecoilState(backState);
+  const setBack = useSetRecoilState(backState);
   const api = useApi();
   const [ingredient, setIngredient] = useState<IngredientType | null>(null);
   const [loading, setLoading] = useState(false);

@@ -1,8 +1,17 @@
 import React from "react";
 import "./Tag.scss";
 
-const Tag: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  return <span className="tag">{children}</span>;
+interface Props {
+  children: React.ReactNode;
+  onClick?: () => void;
+}
+
+const Tag: React.FC<Props> = ({ onClick = undefined, children }) => {
+  return (
+    <span className="tag" onClick={onClick}>
+      {children}
+    </span>
+  );
 };
 
 export default Tag;
