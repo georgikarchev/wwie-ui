@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
+import DeleteButton from "../../components/delete-button/DeleteButton";
 import GoBack from "../../components/go-back/GoBack";
 import Tag from "../../components/tag/Tag";
 import { useApi } from "../../hooks/useApi";
@@ -85,6 +86,23 @@ const UserPage: React.FC<Props> = ({}) => {
     fetchUser();
   }, []);
 
+  const deleteUser = async (ingredientId: string) => {
+    try {
+      await api.delete("/users/" + ingredientId);
+    } catch (err) {
+      setError("Error deleting ingredient");
+    } finally {
+    }
+  };
+
+  const deleteItem = async () => {
+    if (!!user?.id && user?.id !== undefined) {
+      console.log("[LOG] delete user");
+      await deleteUser(user?.id);
+      setPage({ name: "users" });
+    }
+  };
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
   if (!user || user === undefined) return null;
@@ -104,17 +122,33 @@ const UserPage: React.FC<Props> = ({}) => {
           </div>
         )}
         {!notMyAccount && <Tag>ADMIN</Tag>}
-        {/* {isAdmin && <DeleteButton onClick={deleteItem} />} */}
+        {isAdmin && !userIsAdmin && notMyAccount && (
+          <DeleteButton onClick={deleteItem} />
+        )}
       </section>
       <h1 className="page__title">{user?.username}</h1>
       <section className="page__block">
-        id: {user.id || "N/A"}
+        <b>id:</b> {user.id || "N/A"}
         <br />
-        username: {user.username || "N/A"}
         <br />
-        email: {user.email || "N/A"}
+        <b>username:</b> {user.username || "N/A"}
         <br />
-        {/* SHOW current userRole as well as button to switch it */}
+        <br />
+        <b>email:</b> {user.email || "N/A"}
+        <br />
+        <br />
+        <b>role:</b> {user.userRole || "N/A"}
+        <br />
+        <br />
+        <b>created:</b> {user.createdOn || "N/A"}
+        <br />
+        <br />
+        <b>updated:</b> {user.updatedOn || "N/A"}
+        <br />
+        <br />
+        <b>picture:</b> {user.profilePictureLink || "N/A"}
+        <br />
+        <br />
       </section>
     </div>
   );
