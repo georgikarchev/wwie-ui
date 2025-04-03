@@ -33,7 +33,14 @@ const UsersPage: React.FC<Props> = ({}) => {
       {/* <section className="page__block"> */}
       <div className="users">
         {users.length > 0 ? (
-          users.map((user) => <User key={user?.id} user={user} />)
+          users.map((user) => (
+            <User
+              key={user?.id}
+              user={user}
+              deleted={user?.deleted}
+              disableLink={user?.deleted}
+            />
+          ))
         ) : (
           <p>No users available.</p>
         )}

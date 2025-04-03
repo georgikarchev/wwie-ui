@@ -9,9 +9,10 @@ import "./User.scss";
 interface Props {
   user: UserType;
   disableLink?: boolean;
+  deleted: boolean;
 }
 
-const User: React.FC<Props> = ({ user, disableLink = false }) => {
+const User: React.FC<Props> = ({ user, disableLink = false, deleted }) => {
   const [page, setPage] = useRecoilState(pageState);
   const setBack = useSetRecoilState(backState);
   const goUser = () => {
@@ -32,7 +33,7 @@ const User: React.FC<Props> = ({ user, disableLink = false }) => {
   }
 
   return (
-    <article className="user" onClick={goUser}>
+    <article className={`user ${deleted && "deleted"}`} onClick={goUser}>
       <h4>{user.username}</h4>
       {user.userRole === "ADMIN" && <Tag>ADMIN</Tag>}
     </article>
