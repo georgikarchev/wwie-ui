@@ -28,8 +28,8 @@ const UsersPage: React.FC<Props> = ({}) => {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
   return (
-    <div className="page page--ingredients">
-      <h1 className="page__title">Ingredients</h1>
+    <div className="page page--users">
+      <h1 className="page__title">Users</h1>
       {/* <section className="page__block"> */}
       <div className="users">
         {users.length > 0 ? (
