@@ -25,7 +25,7 @@ export const useUser = (isAuthenticated?: boolean): UseUserReturnType => {
           const response = await api.get(`users/me`);
           setUser(response.data);
           // console.log(response.data);
-          localStorage.setItem("user.username", response?.data?.username);
+          // localStorage.setItem("user.username", response?.data?.username);
         } catch (err) {
           console.log("Error fetching user data");
           setError(err as string);
