@@ -1,31 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Meal from "../../components/meal/Meal";
 import { useApi } from "../../hooks/useApi";
+import { useMeals } from "../../hooks/useMeals";
 import "./MealsPage.scss";
 
 const Meals: React.FC = () => {
   const api = useApi();
-  const [meals, setMeals] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { meals, loading, error } = useMeals();
+  // const [meals, setMeals] = useState<any[]>([]);
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchMeals = async () => {
-      try {
-        const response = await api.get("meals");
-        setMeals(response.data);
-      } catch (err) {
-        setError("Error fetching meals");
-      } finally {
-        setLoading(false);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchMeals = async () => {
+  //     try {
+  //       const response = await api.get("meals");
+  //       setMeals(response.data);
+  //     } catch (err) {
+  //       setError("Error fetching meals");
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    fetchMeals();
-  }, []);
+  //   fetchMeals();
+  // }, []);
 
   if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
+  if (error) return <div>Could not fetch Meals.</div>;
 
   return (
     <div className="page page--meals">

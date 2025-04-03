@@ -10,7 +10,7 @@ const MainMenu: React.FC = ({}) => {
 
   const goDashboard = () => go("dashboard");
   const goAddMeal = () => go("add-meal");
-  const goHistory = () => go("hostory");
+  const goHistory = () => go("meals-history");
   const goMeals = () => go("meals");
   const goIngredients = () => go("ingredients");
   const goShoppingList = () => go("shopping-list");
