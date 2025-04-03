@@ -1,5 +1,6 @@
 import React from "react";
 import { useRecoilValue } from "recoil";
+import ChooseMealPage from "../pages/choose-meal-page/ChooseMealPage";
 import Dasboard from "../pages/dashboard/Dashboard";
 import Home from "../pages/home-page/HomePage";
 import IngredientEditPage from "../pages/ingredient-edit-page/IngredientEditPage";
@@ -25,6 +26,7 @@ const Router: React.FC = () => {
       {page?.name == "meals" && <MealsPage />}
       {page?.name == "meal" && <MealPage />}
       {page?.name == "meal-edit" && <MealEditPage />}
+      {page?.name == "choose-meal" && <ChooseMealPage />}
       {page?.name == "meals-history" && <MealsHistoryPage />}
       {page?.name == "ingredients" && <IngredientsPage />}
       {page?.name == "ingredient" && <IngredientPage />}

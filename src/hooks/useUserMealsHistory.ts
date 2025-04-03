@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { SetterOrUpdater, useRecoilState } from "recoil";
 import { userMealHistoryState } from "../state/userMealHistoryState";
-import { UserMealHistory } from "../types/userMealHistory";
+import { UserMealHistory } from "../types/UserMealHistory";
 import { useApi } from "./useApi";
 import { useUser } from "./useUser";
 

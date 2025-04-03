@@ -11,7 +11,7 @@ const MainMenu: React.FC = ({}) => {
   const go = (to: string) => setPage({ name: to });
 
   const goDashboard = () => go("dashboard");
-  const goAddMeal = () => go("add-meal");
+  const goChooseMeal = () => go("choose-meal");
   const goHistory = () => go("meals-history");
   const goMeals = () => go("meals");
   const goIngredients = () => go("ingredients");
@@ -24,7 +24,7 @@ const MainMenu: React.FC = ({}) => {
         <img className="icon" src="src/assets/icons/outlined/home.png" />
       </button>
       {!isAdmin && (
-        <button className="button" onClick={goAddMeal}>
+        <button className="button" onClick={goChooseMeal}>
           <img className="icon" src="src/assets/icons/outlined/lightbulb.png" />
         </button>
       )}

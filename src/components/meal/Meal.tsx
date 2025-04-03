@@ -8,15 +8,19 @@ interface Props {
   id: string;
   name: string;
   imageUrl?: string;
+  disableLink?: boolean;
 }
 
 const PLACEHOLDER_IMAGE =
   "src/assets/luisa-brimble-2RrBE90w0T8-unsplash-small.jpg";
 
-const Meal: React.FC<Props> = ({ id, name, imageUrl }) => {
+const Meal: React.FC<Props> = ({ id, name, imageUrl, disableLink = false }) => {
   const [page, setPage] = useRecoilState(pageState);
   const setBack = useSetRecoilState(backState);
   const goMeal = () => {
+    if (disableLink) {
+      return;
+    }
     setBack(page);
     setPage({ name: "meal", queryParams: { id: id } });
   };
